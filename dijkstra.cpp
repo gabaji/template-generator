@@ -1,7 +1,6 @@
 #include<bits/stdc++.h>
 using namespace std;
 
- // } Driver Code Ends
 
 
 
@@ -13,30 +12,25 @@ class Solution{
 		const int inf = 1e8;
 		priority_queue<pair<int , int> , vector<pair<int , int>> , greater<pair<int, int>>> pq;
 		
-		vector<int> dist(V , -1);
+		vector<int> dist(V , inf);
 		vector<int> vis(V);
 		pq.push({0 , S});
 		dist[S] = 0;
 		while(!pq.empty()){
 			auto root = pq.top();
 			pq.pop();
-			
- 			if(vis[root.second]) continue;
-			dist[root.second] = root.first;
+			if(vis[root.second]) continue;
 			vis[root.second] = true;
-			//cout<<root.second<<"\n";
-			
 			for(auto x : adj[root.second]){
-			    if(vis[x[0]]) continue;
-				dist[x[0]] = dist[root.second] + x[1];
-				pq.push({dist[x[0]] , x[0]});
+			    if(dist[x[0]] > dist[root.second] + x[1]){
+			        dist[x[0]] = dist[root.second] + x[1];
+			        pq.push({dist[x[0]] , x[0]});
+			    }
 			}
 		}
 		return dist;
     }
 };
-
-// { Driver Code Starts.
 
 
 int main()
