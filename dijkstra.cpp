@@ -1,68 +1,55 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#define ll long long
 
+const int N = 1e5 + 5;
+const ll inf = 1e18;
+vector<pair<ll , ll>> adj[N];
 
-
-
-
-class Solution{
-	public:
-    vector <int> dijkstra(int V, vector<vector<int>> adj[], int S) {
-		const int inf = 1e8;
-		priority_queue<pair<int , int> , vector<pair<int , int>> , greater<pair<int, int>>> pq;
-		
-		vector<int> dist(V , inf);
-		vector<int> vis(V);
-		pq.push({0 , S});
-		dist[S] = 0;
-		while(!pq.empty()){
-			auto root = pq.top();
-			pq.pop();
-			if(vis[root.second]) continue;
-			vis[root.second] = true;
-			for(auto x : adj[root.second]){
-			    if(dist[x[0]] > dist[root.second] + x[1]){
-			        dist[x[0]] = dist[root.second] + x[1];
-			        pq.push({dist[x[0]] , x[0]});
-			    }
+vector <ll> dijkstra(int V, int S) {
+	
+	priority_queue<pair<ll , ll> , vector<pair<ll , ll>> , greater<pair<ll, ll>>> pq;
+	
+	vector<ll> dist(V + 1, inf);
+	vector<bool> vis(V + 1);
+	pq.push({0 , S});
+	dist[S] = 0;
+	while(!pq.empty()){
+		auto root = pq.top();
+		pq.pop();
+		if(vis[root.second]) continue;
+		vis[root.second] = true;
+		for(auto x : adj[root.second]){
+			if(dist[x.first] > dist[root.second] + x.second){
+				dist[x.first] = dist[root.second] + x.second;
+				pq.push({dist[x.first] , x.first});
 			}
 		}
-		return dist;
-    }
-};
+	}
+	return dist;
+}
 
 
-int main()
-{
-    int t;
-    cin >> t;
-    while (t--) {
-        int V, E;
+
+int main(){
+
+        ll V, E;
         cin >> V >> E;
-        vector<vector<int>> adj[V];
-        int i=0;
-        while (i++<E) {
-            int u, v, w;
-            cin >> u >> v >> w;
-            vector<int> t1,t2;
-            t1.push_back(v);
-            t1.push_back(w);
-            adj[u].push_back(t1);
-            t2.push_back(u);
-            t2.push_back(w);
-            adj[v].push_back(t2);
-        }
-        int S;
-        cin>>S;
         
-        Solution obj;
-    	vector<int> res = obj.dijkstra(V, adj, S);
+        for(int i = 0 ; i < E ; ++i) {
+            ll u, v, w;
+            cin >> u >> v >> w;
+            adj[u].push_back({v , w});
+        }
+        
+        
+    	auto res = dijkstra(V, 1);
     	
-    	for(int i=0; i<V; i++)
+    	for(int i=1; i<=V; i++)
     	    cout<<res[i]<<" ";
     	cout<<endl;
-    }
+    
 
     return 0;
 }
