@@ -34,22 +34,22 @@ vector <ll> dijkstra(int V, int S) {
 
 int main(){
 
-        ll V, E;
-        cin >> V >> E;
-        
-        for(int i = 0 ; i < E ; ++i) {
-            ll u, v, w;
-            cin >> u >> v >> w;
-            adj[u].push_back({v , w});
-        }
-        
-        
-    	auto res = dijkstra(V, 1);
-    	
-    	for(int i=1; i<=V; i++)
-    	    cout<<res[i]<<" ";
-    	cout<<endl;
-    
+	ll V, E;
+	cin >> V >> E;
+	
+	for(int i = 0 ; i < E ; ++i) {
+		ll u, v, w;
+		cin >> u >> v >> w;
+		adj[u].push_back({v , w});
+	}
+	
+	
+	auto res = dijkstra(V, 1);
+	
+	for(int i=1; i<=V; i++)
+		cout<<res[i]<<" ";
+	cout<<'\n';
+
 
     return 0;
 }
