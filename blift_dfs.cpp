@@ -54,6 +54,17 @@ void build(int node){
 }
 
 
+int jump(int a , int k){
+	if(k > depth[a])	
+		return -1;
+	for(int i = 0 ; i < LOG ; ++i){
+		if(k & (1 << i))
+			a = up[a][i];
+	}
+	return a + 1;
+}
+
+
 int query(int a , int b){
 	if(depth[a] < depth[b]) return query(b , a);
 	
@@ -78,15 +89,8 @@ int main(){
 	int n;
 	cin>>n;
 	
-	for(int i = 0 ; i < n ; ++i){
-		int m;
-		cin>>m;
-		for(int j = 0 ; j < m ; ++j){
-			int x;
-			cin>>x;
-			//parent[x] = i;
-			child[i].push_back(x);
-		}
+	for(int i = 0 ; i < n - 1 ; ++i){
+		/* edge input */
 	}
 	build(0);
 	int q;
