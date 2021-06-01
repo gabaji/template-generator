@@ -4,8 +4,12 @@ using namespace std;
 const int N = 1e5;
 int n , arr[N] , ftree[N];
 
-// to go lower, use (r & (r - 1)) - 1
+// For zero based indexing
+// to go lower, use (r & (r - 1)) - 1 
 // to go up, use (r | (r + 1))
+
+// For 1 based indexing
+// use i += (i & (-i)) and i -= (i & (-i))
 
 void add(int index ,int val){		// point update
 	for( ; index < n ; index = index | (index + 1))

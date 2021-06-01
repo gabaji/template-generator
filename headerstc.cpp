@@ -20,8 +20,12 @@ void amin(T& a , T b){
 const int inf = 1e9;
 const int mod = 1e9 + 7;
 
+void solve(){
+
+}
 int main(){
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	
+	int t; cin>>t;
+    while(t--) solve();
 }

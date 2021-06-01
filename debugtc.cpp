@@ -40,7 +40,14 @@ const int inf = 1e9;
 const int mod = 1e9 + 7;
 // debug & operator << (debug & dd, P p) { dd << "(" << p.x << ", " << p.y << ")"; return dd; }
 
+void solve(){
+    
+}
+
 int main(){
 	ios_base::sync_with_stdio(false), cin.tie(NULL);
+    int t;
+    cin>>t;
+    while(t--) solve();
 
 }
