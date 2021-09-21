@@ -2,30 +2,23 @@
 using namespace std;
 
 
-
-class Solution{
-	public:
-
-    const int inf = 1e8;
-    vector <int> bellman_ford(int V, vector<vector<int>> adj, int S) {
-        
-        vector<int> dp(V , inf);
-        dp[S] = 0;
-        for(int i = 0 ; i < V - 1 ; ++i){
-            bool flag = false;
-			for(auto x : adj){
-				int a = x[0] , b = x[1] , c = x[2];
-				if(dp[b] > dp[a] + c){
-				    dp[b] =  dp[a] + c;
-				    flag = true;
-				}
-			}
-			if(!flag) break;
-		}
-		return dp;
+vector <int> bellman_ford(int V, vector<vector<int>> adj, int S) {
+    const int inf = 1e9;    
+    vector<int> dp(V , inf);
+    dp[S] = 0;
+    for(int i = 0 ; i < V - 1 ; ++i){
+        bool flag = false;
+        for(auto x : adj){
+            int a = x[0] , b = x[1] , c = x[2];
+            if(dp[b] > dp[a] + c){
+                dp[b] =  dp[a] + c;
+                flag = true;
+            }
+        }
+        if(!flag) break;
     }
-    
-};
+    return dp;
+}
 
 int main()
 {
@@ -47,9 +40,7 @@ int main()
         }
         int S;
         cin>>S;
-        
-        Solution obj;
-    	vector<int> res = obj.bellman_ford(V, adj, S);
+    	vector<int> res = bellman_ford(V, adj, S);
     	
     	for(int i=0; i<V; i++)
     	    cout<<res[i]<<" ";

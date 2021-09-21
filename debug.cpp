@@ -31,8 +31,6 @@ sim dor(const c&) { ris; }
 #define ll long long
 #define vi vector<int> 
 #define pii pair<int , int>
-#define f first
-#define s second
 #define pb push_back
 #define sz(x) (int)x.size()
 

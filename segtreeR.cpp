@@ -5,8 +5,6 @@ const int mod = 1e9 + 7;
 const int N = 2e5 + 5;
 int seg[4 * N];
 int arr[N];
-
-
 int n;
 
 void build(int index , int tl , int tr){
